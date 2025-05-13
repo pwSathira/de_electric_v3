@@ -31,7 +31,7 @@ import { motion, AnimatePresence } from 'motion-v'
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet');
 
 .image-container {
   display: flex;
@@ -48,13 +48,14 @@ import { motion, AnimatePresence } from 'motion-v'
 }
 
 .text-container h1 { 
-  font-family: 'Lobster', cursive;
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 700;
   font-size: clamp(2rem, 8vw, 5rem);
   margin: 0;
 }
 
 .text-container h2 { 
-  font-family: 'CalSans', sans-serif;
+  font-family: 'Merriweather Sans', sans-serif;
   font-size: clamp(1rem, 4vw, 1.5rem);
   margin: 0;
 }

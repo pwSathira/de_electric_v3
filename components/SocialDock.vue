@@ -9,7 +9,7 @@
       v-for="(social, index) in socialLinks" 
       :key="social.name"
       :href="social.url"
-      :title="social.name"
+      :data-tooltip="social.tooltip"
       target="_blank"
       rel="noopener noreferrer"
       class="social-icon"
@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { Twitter, Linkedin, Github, Instagram, Facebook } from 'lucide-vue-next'
+import { Facebook, Mail, Phone } from 'lucide-vue-next'
 import { motion } from 'motion-v'
 const colorMode = useColorMode()
 
@@ -33,29 +33,21 @@ const isDark = computed(() => colorMode.value === 'dark')
 
 const socialLinks = [
   {
-    name: 'Twitter',
-    url: 'https://twitter.com/',
-    icon: Twitter
-  },
-  {
-    name: 'LinkedIn',
-    url: 'https://linkedin.com/',
-    icon: Linkedin
-  },
-  {
-    name: 'GitHub',
-    url: 'https://github.com/',
-    icon: Github
-  },
-  {
-    name: 'Instagram',
-    url: 'https://instagram.com/',
-    icon: Instagram
-  },
-  {
     name: 'Facebook',
-    url: 'https://facebook.com/',
+    url: 'https://www.facebook.com/profile.php?id=100081929477039',
     icon: Facebook
+  },
+  {
+    name: 'Email',
+    url: 'mailto:info@dnipro.ca',
+    icon: Mail,
+    tooltip: 'info@dnipro.ca'
+  },
+  {
+    name: 'Phone',
+    url: 'tel:+1(647)700-5198',
+    icon: Phone,
+    tooltip: '+1 (647) 700-5198'
   }
 ]
 </script>
@@ -90,6 +82,26 @@ const socialLinks = [
   background: v-bind('isDark ? "rgba(31, 41, 55, 0.5)" : "rgba(255, 255, 255, 0.2)"');
   color: v-bind('isDark ? "#fff" : "#1f2937"');
   text-decoration: none;
+  position: relative;
+}
+
+.social-icon[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 1rem;
+  background: v-bind('isDark ? "rgba(31, 41, 55, 0.9)" : "rgba(255, 255, 255, 0.9)"');
+  color: v-bind('isDark ? "#fff" : "#1f2937"');
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  pointer-events: none;
+  margin-bottom: 0.5rem;
+  box-shadow: v-bind('isDark ? "0 4px 6px rgba(0, 0, 0, 0.3)" : "0 4px 6px rgba(0, 0, 0, 0.1)"');
+  border: v-bind('isDark ? "1px solid rgba(255, 255, 255, 0.1)" : "1px solid rgba(0, 0, 0, 0.1)"');
+  backdrop-filter: blur(10px);
 }
 
 @media (max-width: 768px) {
