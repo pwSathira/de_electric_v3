@@ -106,10 +106,6 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.gradient-orbs {
-  /* container already has transition via the class above */
-}
-
 .orb {
   perspective: 1000px;
   /* pulse animation */
