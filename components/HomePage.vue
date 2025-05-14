@@ -1,33 +1,41 @@
 <script setup lang="ts">
 import { motion, AnimatePresence } from 'motion-v'
+
+defineNuxtComponent({
+  ssr: false
+})
 </script>
+
 <template>
+  <ClientOnly>
     <AnimatePresence>
-        <div class="image-container">
-            <motion.div
-                :initial="{ opacity: 0, scale: 0.5 }"
-                :animate="{ opacity: 1, scale: 1 }"
-                :transition="{ duration: 0.5 }"
-            >
-                <img src="/dnipro-logo.png" alt="Dnipro Electric Inc. Logo">
-            </motion.div>
+      <div class="image-container">
+        <motion.div
+          :initial="{ opacity: 0, scale: 0.5 }"
+          :animate="{ opacity: 1, scale: 1 }"
+          :transition="{ duration: 0.5 }"
+        >
+          <img src="/dnipro-logo.png" alt="Dnipro Electric Inc. Logo">
+        </motion.div>
     
         <motion.div 
-            :initial="{ opacity: 0, y: 20 }"
-            :animate="{ opacity: 1, y: 0 }"
-            :transition="{
-                type: 'spring',
-                stiffness: 100,
-                damping: 10,
-                delay: 0.5
-            }" class="text-container" >
-        <h1>Dnipro Electric Inc.</h1>
-        <h2>Website under construction</h2>
-        <h3>For more information please check our social media</h3>
-    </motion.div>   
-  </div>
-</AnimatePresence>
-  
+          :initial="{ opacity: 0, y: 20 }"
+          :animate="{ opacity: 1, y: 0 }"
+          :transition="{
+            type: 'spring',
+            stiffness: 100,
+            damping: 10,
+            delay: 0.5
+          }" 
+          class="text-container"
+        >
+          <h1>Dnipro Electric Inc.</h1>
+          <h2>Website under construction</h2>
+          <h3>For more information please check our social media</h3>
+        </motion.div>   
+      </div>
+    </AnimatePresence>
+  </ClientOnly>
 </template>
 
 <style scoped>

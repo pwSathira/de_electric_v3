@@ -8,7 +8,9 @@ import GradientOrb from '~/components/GradientOrb.vue';
 <template>
   <div>
     <GradientOrb />
-    <ThemeToggle class="fixed top-4 right-4" />
+    <div class="fixed top-4 right-4">
+      <ThemeToggle />
+    </div>
     <HomePage />
     <SocialDock />
   </div>

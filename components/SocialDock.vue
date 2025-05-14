@@ -1,34 +1,40 @@
 <template>
-  <motion.div
-    class="social-dock"
-    :initial="{ y: 100, opacity: 0 }"
-    :animate="{ y: 0, opacity: 1 }"
-    :transition="{ type: 'spring', stiffness: 100, damping: 15 }"
-  >
-    <motion.a
-      v-for="(social, index) in socialLinks" 
-      :key="social.name"
-      :href="social.url"
-      :data-tooltip="social.tooltip"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="social-icon"
-      :initial="{ scale: 0, opacity: 0 }"
-      :animate="{ scale: 1, opacity: 1 }"
-      :transition="{ delay: index * 0.1 }"
-      :while-hover="{ y: -8, scale: 1.1 }"
-      :while-tap="{ scale: 0.95 }"
+  <ClientOnly>
+    <motion.div
+      class="social-dock"
+      :initial="{ y: 100, opacity: 0 }"
+      :animate="{ y: 0, opacity: 1 }"
+      :transition="{ type: 'spring', stiffness: 100, damping: 15 }"
     >
-      <component :is="social.icon" size="24" />
-    </motion.a>
-  </motion.div>
+      <motion.a
+        v-for="(social, index) in socialLinks" 
+        :key="social.name"
+        :href="social.url"
+        :data-tooltip="social.tooltip"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-icon"
+        :initial="{ scale: 0, opacity: 0 }"
+        :animate="{ scale: 1, opacity: 1 }"
+        :transition="{ delay: index * 0.1 }"
+        :while-hover="{ y: -8, scale: 1.1 }"
+        :while-tap="{ scale: 0.95 }"
+      >
+        <component :is="social.icon" size="24" />
+      </motion.a>
+    </motion.div>
+  </ClientOnly>
 </template>
 
 <script setup>
 import { Facebook, Mail, Phone } from 'lucide-vue-next'
 import { motion } from 'motion-v'
-const colorMode = useColorMode()
 
+defineNuxtComponent({
+  ssr: false
+})
+
+const colorMode = useColorMode()
 const isDark = computed(() => colorMode.value === 'dark')
 
 const socialLinks = [

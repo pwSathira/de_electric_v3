@@ -1,6 +1,10 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
+defineNuxtComponent({
+  ssr: false
+})
+
 const mounted = ref(false)
 let animationFrame = null
 
@@ -84,25 +88,27 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    class="gradient-orbs fixed inset-0 pointer-events-none z-[-1]
-           overflow-hidden opacity-0 transition-opacity duration-500"
-    :class="{ 'opacity-100': mounted }"
-  >
+  <ClientOnly>
     <div
-      v-for="(pos,i) in positions"
-      :key="i"
-      class="orb absolute blur-[80px] rounded-full will-change-transform
-             mix-blend-mode-plus-lighter backface-hidden opacity-0"
-      :class="[ sizeClasses[i], gradientClasses[i] ]"
-      :style="{
-        left: pos.x + '%',
-        top: pos.y + '%',
-        transform: `translate(-50%, -50%) scale(${pos.scale})`,
-        opacity: mounted ? 1 : 0,
-      }"
-    />
-  </div>
+      class="gradient-orbs fixed inset-0 pointer-events-none z-[-1]
+             overflow-hidden opacity-0 transition-opacity duration-500"
+      :class="{ 'opacity-100': mounted }"
+    >
+      <div
+        v-for="(pos,i) in positions"
+        :key="i"
+        class="orb absolute blur-[80px] rounded-full will-change-transform
+               mix-blend-mode-plus-lighter backface-hidden opacity-0"
+        :class="[ sizeClasses[i], gradientClasses[i] ]"
+        :style="{
+          left: pos.x + '%',
+          top: pos.y + '%',
+          transform: `translate(-50%, -50%) scale(${pos.scale})`,
+          opacity: mounted ? 1 : 0,
+        }"
+      />
+    </div>
+  </ClientOnly>
 </template>
 
 <style scoped>
